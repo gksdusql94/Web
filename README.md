@@ -29,6 +29,12 @@ The dataset used is an Apache Web Server log file in the Common Log Format (CLF)
 - **Top 404 Errors**: Identified the top 20 URLs responsible for 404 errors, revealing common broken links.
 - **Traffic Insights**: Analyzed traffic patterns and identified peak activity hours and days.
 
+ Developed a web server log analysis system using PySpark to process and analyze Apache server logs.
+-	Corrected 108 parsing errors in the initial dataset by refining regular expressions, achieving a 99.99% log parsing success rate.
+-	Conducted analysis of over 1 million log entries, producing insights such as top endpoints, response codes, and traffic patterns by day and hour.
+-	Visualized key metrics like the top error-prone endpoints and 404 response code trends using Matplotlib, enhancing the ability to monitor server performance and detect issues.
+
+
 ## Visualization
 Key metrics are visualized using Matplotlib, showcasing trends like:
 - **Top 404 Error URLs**: Bar chart of URLs causing the most 404 errors.
