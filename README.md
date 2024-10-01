@@ -91,8 +91,7 @@ plt.ylabel('Average')
 plt.plot(daysWithAvg, avgs)
 pass
 ```
-![image](https://github.com/user-attachments/assets/3d598b2e-caae-46f6-9d81-ca14edfb611b)
-
+![image](https://github.com/user-attachments/assets/01cb08fc-ef48-4708-9177-6b0c951df809)
 
 ### **the Average Daily Requests per Unique Hosts**
 Using the result avgDailyReqPerHost from the previous exercise, use matplotlib to plot a "Line" graph of the average daily requests per unique host by day.
