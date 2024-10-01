@@ -35,11 +35,61 @@ The dataset used is an Apache Web Server log file in the Common Log Format (CLF)
 -	Visualized key metrics like the top error-prone endpoints and 404 response code trends using Matplotlib, enhancing the ability to monitor server performance and detect issues.
 
 
-## Visualization
+## 📊 Visualization
 Key metrics are visualized using Matplotlib, showcasing trends like:
-- **Top 404 Error URLs**: Bar chart of URLs causing the most 404 errors.
-- **Hourly 404 Error Distribution**: Line graph visualizing 404 errors over each hour of the day.
-- **Daily Traffic Patterns**: Line graph showing the number of requests per day.
+- **Top 404 Error URLs**: This bar chart displays the top 20 URLs that caused the most 404 errors.
+
+```python
+# Top 20 404 Error URLs Data
+urls, counts = zip(*badEndpointsTop20)
+
+# Bar Chart Visualization
+fig = plt.figure(figsize=(10,6), facecolor='white', edgecolor='white')
+plt.barh(urls, counts, color='skyblue')
+plt.xlabel('Number of 404 Errors')
+plt.ylabel('URL')
+plt.title('Top 20 URLs Causing 404 Errors')
+plt.tight_layout()
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/489cd677-2f33-4826-afcd-2cd78a9bbf59)
+
+- **Hourly 404 Error Distribution**: This line graph displays the distribution of 404 errors across different hours of the day.
+
+```python
+# Hourly 404 Errors Data
+hoursWithErrors404 = hourRecordsSorted.map(lambda a: a[0]).collect()
+errors404ByHours = hourRecordsSorted.map(lambda a: a[1]).collect()
+
+# Line Graph Visualization
+fig = plt.figure(figsize=(8,4.2), facecolor='white', edgecolor='white')
+plt.axis([0, max(hoursWithErrors404), 0, max(errors404ByHours)])
+plt.grid(visible=True, which='major', axis='y')
+plt.xlabel('Hour of Day')
+plt.ylabel('Number of 404 Errors')
+plt.plot(hoursWithErrors404, errors404ByHours)
+plt.title('Hourly Distribution of 404 Errors')
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/dab25119-2d05-46ef-a352-0c95492201d8)
+
+- **Daily Traffic Patterns**: This line graph visualizes the number of 404 errors recorded for each day.
+```python
+# Daily 404 Errors Data
+daysWithErrors404 = errDateSorted.map(lambda ab: ab[0]).collect()
+errors404ByDay = errDateSorted.map(lambda ab: ab[1]).collect()
+
+# Line Graph Visualization
+fig = plt.figure(figsize=(8,4.2), facecolor='white', edgecolor='white')
+plt.axis([0, max(daysWithErrors404), 0, max(errors404ByDay)])
+plt.grid(visible=True, which='major', axis='y')
+plt.xlabel('Day of Month')
+plt.ylabel('Number of 404 Errors')
+plt.plot(daysWithErrors404, errors404ByDay)
+plt.title('Daily Distribution of 404 Errors')
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/c1e4c144-35e6-4df2-9c27-2176e424d62f)
 
 ## 🔮 Future Work
 - Extend the analysis to other server logs and integrate real-time monitoring.
